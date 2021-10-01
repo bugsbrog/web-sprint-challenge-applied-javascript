@@ -61,20 +61,20 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. What is the DOM?
 
-The DOM is
+The DOM stands for the Document Object Model. It is built as a tree structure. 
 
 2. What is an event?
 
-An event is 
+An event is a click, mouse moving, scroll, pressing keys, etc. 
 
 3. What is an event listener?
 
-An event listener is
+An event listener is something that listens for an event like a click, hover, text input, etc.
 
 4. Why would we convert a NodeList into an Array?
 
-
+To make things look neat/orderly.
 
 5. What is a component?
 
-
+It brings HTML, CSS or JavaScript together for using in a website.

@@ -18,6 +18,7 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  // HTML Elements
   const card = document.createElement('div');
   const headline = document.createElement('div');
   const author = document.createElement('div');
@@ -25,21 +26,25 @@ const Card = (article) => {
   const authorImg = document.createElement('img');
   const authorName = document.createElement('span');
   
+  // .classList.add
   card.classList.add('card');
   headline.classList.add('headline');
   author.classList.add('author');
   imgCont.classList.add('img-container');
   
+  // .textContent & .src
   headline.textContent = article.headline;
   authorImg.src = article.authorPhoto;
   authorName.textContent = `By ${article.authorName}`;
   
+  // .appendChild
   card.appendChild(headline);
   card.appendChild(author);
   author.appendChild(imgCont);
   imgCont.appendChild(authorImg);
   author.appendChild(authorName);
   
+  // .addEventListener
   card.addEventListener('click', () => {
     console.log(article.headline);
   })
@@ -56,6 +61,7 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  // axios.get
   axios.get('http://localhost:5000/api/articles')
   .then(res => {
     console.log(res)
@@ -68,6 +74,7 @@ const cardAppender = (selector) => {
     const nodeJS = res.data.articles.node
     const random = document.querySelector(selector)
 
+    // .forEach
     javascript.forEach(item => {
       random.appendChild(Card(item))
     })
@@ -84,6 +91,8 @@ const cardAppender = (selector) => {
       random.appendChild(Card(item))
     })
   })
+
+  // .catch
   .catch(err => {
     console.error(err)
   })
