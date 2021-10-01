@@ -1,3 +1,4 @@
+import axios from 'axios'
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -17,7 +18,34 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  const card = document.createElement('div');
+  const headline = document.createElement('div');
+  const author = document.createElement('div');
+  const imgCont = document.createElement('div');
+  const authorImg = document.createElement('img');
+  const authorName = document.createElement('span');
+  
+  card.classList.add('card');
+  headline.classList.add('headline');
+  author.classList.add('author');
+  imgCont.classList.add('img-container');
+  
+  headline.textContent = article.headline;
+  authorImg.src = article.authorPhoto;
+  authorName.textContent = `By ${article.authorName}`;
+  
+  card.appendChild(headline);
+  card.appendChild(author);
+  author.appendChild(imgCont);
+  imgCont.appendChild(authorImg);
+  author.appendChild(authorName);
+  
+  card.addEventListener('click', () => {
+    console.log(article.headline);
+  })
+  return card;
 }
+
 
 const cardAppender = (selector) => {
   // TASK 6
@@ -28,6 +56,38 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  axios.get('http://localhost:5000/api/articles')
+  .then(res => {
+    console.log(res)
+
+    // HTML Elements
+    const javascript = res.data.articles.javascript
+    const bootstrap = res.data.articles.bootstrap
+    const technology = res.data.articles.technology
+    const jquery = res.data.articles.jquery
+    const nodeJS = res.data.articles.node
+    const random = document.querySelector(selector)
+
+    javascript.forEach(item => {
+      random.appendChild(Card(item))
+    })
+    bootstrap.forEach(item => {
+      random.appendChild(Card(item))
+    })
+    technology.forEach(item => {
+      random.appendChild(Card(item))
+    })
+    jquery.forEach(item => {
+      random.appendChild(Card(item))
+    })
+    nodeJS.forEach(item => {
+      random.appendChild(Card(item))
+    })
+  })
+  .catch(err => {
+    console.error(err)
+  })
 }
+
 
 export { Card, cardAppender }
